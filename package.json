@@ -1,6 +1,6 @@
 {
   "name": "react-slick",
-  "version": "0.6.6",
+  "version": "0.8.0",
   "description": " React port of slick carousel",
   "main": "./lib",
   "scripts": {
@@ -38,7 +38,7 @@
     "foundation-apps": "^1.1.0",
     "gulp": "^3.8.11",
     "gulp-sass": "^2.0.1",
-    "karma": "^0.12.31",
+    "karma": "^0.13",
     "karma-chrome-launcher": "^0.1.12",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.0",
@@ -48,8 +48,7 @@
     "phantomjs": "^1.9.17",
     "postcss-loader": "^0.4.4",
     "react": "^0.14.0",
-    "react-hot-loader": "^1.2.7",
-    "react-router": "^1.0.0-rc3",
+    "react-dom": "^0.14.0",
     "run-sequence": "^1.1.0",
     "sass-loader": "^1.0.2",
     "should": "^7.0.2",
@@ -62,12 +61,9 @@
     "classnames": "^2.1.1",
     "json2mq": "^0.2.0",
     "object-assign": "^2.0.0",
+    "react-dom": "^0.14.0",
     "react-responsive-mixin": "^0.3.5",
-    "react-router": "^1.0.0-rc3",
     "slick-carousel": "^1.5.5"
-  },
-  "peerDependencies": {
-    "react": ">=0.12.*"
   },
   "npmName": "react-slick",
   "npmFileMap": [

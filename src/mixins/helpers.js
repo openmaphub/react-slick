@@ -8,9 +8,9 @@ import assign from 'object-assign';
 var helpers = {
   initialize: function (props) {
     var slideCount = React.Children.count(props.children);
-    var listWidth = this.refs.list.getDOMNode().getBoundingClientRect().width;
-    var trackWidth = this.refs.track.getDOMNode().getBoundingClientRect().width;
-    var slideWidth = this.getDOMNode().getBoundingClientRect().width/props.slidesToShow;
+    var listWidth = this.getWidth(this.refs.list.getDOMNode());
+    var trackWidth = this.getWidth(this.refs.track.getDOMNode());
+    var slideWidth = this.getWidth(this.getDOMNode())/props.slidesToShow;
 
     var currentSlide = props.rtl ? slideCount - 1 - props.initialSlide : props.initialSlide;
 
@@ -35,6 +35,34 @@ var helpers = {
       this.autoPlay(); // once we're set up, trigger the initial autoplay.
     });
   },
+  update: function (props) {
+    // This method has mostly same code as initialize method.
+    // Refactor it 
+    var slideCount = React.Children.count(props.children);
+    var listWidth = this.getWidth(this.refs.list.getDOMNode());
+    var trackWidth = this.getWidth(this.refs.track.getDOMNode());
+    var slideWidth = this.getWidth(this.getDOMNode())/props.slidesToShow;
+
+    this.setState({
+      slideCount: slideCount,
+      slideWidth: slideWidth,
+      listWidth: listWidth,
+      trackWidth: trackWidth
+    }, function () {
+
+      var targetLeft = getTrackLeft(assign({
+        slideIndex: this.state.currentSlide,
+        trackRef: this.refs.track
+      }, props, this.state));
+      // getCSS function needs previously set state
+      var trackStyle = getTrackCSS(assign({left: targetLeft}, props, this.state));
+
+      this.setState({trackStyle: trackStyle});
+    });
+  },
+  getWidth: function getWidth(elem) {
+    return elem.getBoundingClientRect().width || elem.offsetWidth;
+  },
   adaptHeight: function () {
     if (this.props.adaptiveHeight) {
       var selector = '[data-index="' + this.state.currentSlide +'"]';
@@ -57,10 +85,6 @@ var helpers = {
 
     if (this.props.fade) {
       currentSlide = this.state.currentSlide;
-
-      if (this.props.beforeChange) {
-        this.props.beforeChange(currentSlide);
-      }
 
       //  Shifting targetSlide back into the range
       if (index < 0) {
@@ -93,6 +117,10 @@ var helpers = {
       }, function () {
         ReactTransitionEvents.addEndEventListener(this.refs.track.getDOMNode().children[currentSlide], callback);
       });
+
+      if (this.props.beforeChange) {
+        this.props.beforeChange(this.state.currentSlide, currentSlide);
+      }
 
       this.autoPlay();
       return;
@@ -134,7 +162,7 @@ var helpers = {
     }
 
     if (this.props.beforeChange) {
-      this.props.beforeChange(currentSlide);
+      this.props.beforeChange(this.state.currentSlide, currentSlide);
     }
 
     if (this.props.lazyLoad) {
