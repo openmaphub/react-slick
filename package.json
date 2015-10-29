@@ -22,6 +22,10 @@
     "slider",
     "react-component"
   ],
+  "peerDependencies": {
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
+  },
   "devDependencies": {
     "autoprefixer-core": "^5.1.11",
     "babel": "^5.4.7",
@@ -47,8 +51,8 @@
     "node-sass": "^3.1.2",
     "phantomjs": "^1.9.17",
     "postcss-loader": "^0.4.4",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
     "run-sequence": "^1.1.0",
     "sass-loader": "^1.0.2",
     "should": "^7.0.2",
@@ -61,7 +65,7 @@
     "classnames": "^2.1.1",
     "json2mq": "^0.2.0",
     "object-assign": "^2.0.0",
-    "react-dom": "^0.14.0",
+
     "react-responsive-mixin": "^0.3.5",
     "slick-carousel": "^1.5.5"
   },
