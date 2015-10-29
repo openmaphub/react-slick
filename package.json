@@ -24,7 +24,7 @@
   ],
   "peerDependencies": {
     "react": "^0.14.1",
-    "react-dom": "^0.14.1",
+    "react-dom": "^0.14.1"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.1.11",
